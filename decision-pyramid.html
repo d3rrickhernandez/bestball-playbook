@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Decision Pyramid — Best Ball 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --green-bright: #22c55e;
+    --bg: #0a0f0d;
+    --bg-card: #111a14;
+    --bg-card2: #0d1610;
+    --text: #f0fdf4;
+    --text-muted: #86efac;
+    --border: rgba(34,197,94,0.2);
+    --font-display: 'Barlow Condensed', sans-serif;
+    --font-body: 'Barlow', sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 15px; line-height: 1.65; min-height: 100vh; }
+
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(10,15,13,0.95); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; padding: 0 2rem;
+  }
+  .nav-logo { font-family: var(--font-display); font-size: 18px; font-weight: 800; letter-spacing: 0.06em; color: var(--green-bright); text-transform: uppercase; padding: 14px 0; margin-right: 2rem; text-decoration: none; }
+  .nav-links { display: flex; }
+  .nav-links a { font-family: var(--font-display); font-size: 13px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; padding: 14px 16px; border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--green-bright); border-bottom-color: var(--green-bright); }
+
+  .hero {
+    background: linear-gradient(160deg, #0a0f0d 0%, #0d1f12 50%, #0a0f0d 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 4rem 2rem 3rem; text-align: center; position: relative; overflow: hidden;
+  }
+  .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 40% at 50% 0%, rgba(34,197,94,0.08), transparent); pointer-events: none; }
+  .hero-eyebrow { font-family: var(--font-display); font-size: 12px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--green-bright); margin-bottom: 0.75rem; }
+  .hero h1 { font-family: var(--font-display); font-size: clamp(42px, 7vw, 72px); font-weight: 800; letter-spacing: 0.02em; text-transform: uppercase; line-height: 1; color: var(--text); margin-bottom: 1rem; }
+  .hero h1 span { color: var(--green-bright); }
+  .hero-sub { font-size: 15px; color: var(--text-muted); max-width: 560px; margin: 0 auto 1.5rem; }
+  .pill-row { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+  .pill { font-family: var(--font-display); font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; background: rgba(34,197,94,0.1); color: var(--green-bright); border: 1px solid rgba(34,197,94,0.3); border-radius: 20px; padding: 4px 12px; }
+
+  .section { max-width: 900px; margin: 0 auto; padding: 3rem 2rem; }
+
+  .pyramid-outer { display: flex; justify-content: center; margin-bottom: 3rem; }
+  .pyramid-svg-wrap { width: 100%; max-width: 660px; }
+
+  .py-details { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  @media (max-width: 600px) { .py-details { grid-template-columns: 1fr; } }
+
+  .py-detail-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.125rem; }
+  .py-detail-num { font-family: var(--font-display); font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--green-bright); margin-bottom: 3px; }
+  .py-detail-title { font-family: var(--font-display); font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text); margin-bottom: 8px; }
+  .py-detail-bullets { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .py-detail-bullets li { font-size: 12.5px; color: #a3c9b0; line-height: 1.5; padding-left: 14px; position: relative; }
+  .py-detail-bullets li::before { content: '›'; position: absolute; left: 0; color: var(--green-bright); font-weight: 700; }
+  .py-detail-bullets li strong { color: var(--text); font-weight: 600; }
+
+  footer { border-top: 1px solid var(--border); text-align: center; padding: 2rem; font-size: 12px; color: #4a7a5a; font-family: var(--font-display); letter-spacing: 0.06em; text-transform: uppercase; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">⬡ BB Playbook</a>
+  <div class="nav-links">
+    <a href="dk-strategy.html">DK Strategy</a>
+    <a href="decision-pyramid.html" class="active">Decision Pyramid</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-eyebrow">2026 Season · On-The-Clock Framework</div>
+  <h1>Decision<br><span>Pyramid</span></h1>
+  <p class="hero-sub">A weighted guide for on-the-clock decisions. Not a strict decision tree — topics lower in the pyramid carry greater overall weight on advance rates.</p>
+  <div class="pill-row">
+    <span class="pill">Roster Construction</span>
+    <span class="pill">Stacking</span>
+    <span class="pill">ADP</span>
+    <span class="pill">Week 17</span>
+  </div>
+</div>
+
+<div class="section">
+
+  <div class="pyramid-outer">
+    <div class="pyramid-svg-wrap">
+      <!--
+        SVG canvas: 660 wide x 600 tall
+        Apex:  (330, 10)
+        Base:  left=(10, 590), right=(650, 590)
+
+        The triangle sides are straight lines from apex to base corners.
+        Left edge:  x = 330 - 320*(y-10)/580  at height y
+        Right edge: x = 330 + 320*(y-10)/580  at height y
+
+        6 equal horizontal bands, each 580/6 ≈ 96.67px tall
+        Band boundaries at y = 10, 106.67, 203.33, 300, 396.67, 493.33, 590
+
+        At each y, half-width = 320*(y-10)/580
+          y=10:     hw=0      → x_l=330,    x_r=330
+          y=106.67: hw=53.33  → x_l=276.67, x_r=383.33
+          y=203.33: hw=106.67 → x_l=223.33, x_r=436.67
+          y=300:    hw=160    → x_l=170,    x_r=490
+          y=396.67: hw=213.33 → x_l=116.67, x_r=543.33
+          y=493.33: hw=266.67 → x_l=63.33,  x_r=596.67
+          y=590:    hw=320    → x_l=10,     x_r=650
+      -->
+      <svg viewBox="0 0 660 600" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+
+        <!-- Tier fills, bottom to top -->
+        <!-- Tier 6 base: y 493.33 → 590 -->
+        <polygon points="63.33,493.33 596.67,493.33 650,590 10,590" fill="#116d32"/>
+        <!-- Tier 5: y 396.67 → 493.33 -->
+        <polygon points="116.67,396.67 543.33,396.67 596.67,493.33 63.33,493.33" fill="#157d3b"/>
+        <!-- Tier 4: y 300 → 396.67 -->
+        <polygon points="170,300 490,300 543.33,396.67 116.67,396.67" fill="#1a9147"/>
+        <!-- Tier 3: y 203.33 → 300 -->
+        <polygon points="223.33,203.33 436.67,203.33 490,300 170,300" fill="#1ea84f"/>
+        <!-- Tier 2: y 106.67 → 203.33 -->
+        <polygon points="276.67,106.67 383.33,106.67 436.67,203.33 223.33,203.33" fill="#22c058"/>
+        <!-- Tier 1 apex: y 10 → 106.67 -->
+        <polygon points="330,10 383.33,106.67 276.67,106.67" fill="#26d460"/>
+
+        <!-- Divider lines (clipped to triangle interior) -->
+        <line x1="276.67" y1="106.67" x2="383.33" y2="106.67" stroke="rgba(255,255,255,0.35)" stroke-width="1.5"/>
+        <line x1="223.33" y1="203.33" x2="436.67" y2="203.33" stroke="rgba(255,255,255,0.35)" stroke-width="1.5"/>
+        <line x1="170"    y1="300"    x2="490"    y2="300"    stroke="rgba(255,255,255,0.35)" stroke-width="1.5"/>
+        <line x1="116.67" y1="396.67" x2="543.33" y2="396.67" stroke="rgba(255,255,255,0.35)" stroke-width="1.5"/>
+        <line x1="63.33"  y1="493.33" x2="596.67" y2="493.33" stroke="rgba(255,255,255,0.35)" stroke-width="1.5"/>
+
+        <!-- Outer triangle border -->
+        <polygon points="330,10 650,590 10,590" fill="none" stroke="rgba(34,197,94,0.5)" stroke-width="2"/>
+
+        <!-- TEXT — centered vertically in each band -->
+        <!-- Band midpoints: (10+106.67)/2=58.33, (106.67+203.33)/2=155, (203.33+300)/2=251.67, (300+396.67)/2=348.33, (396.67+493.33)/2=445, (493.33+590)/2=541.67 -->
+
+        <!-- Tier 1 apex: mid y=58.33 -->
+        <text x="330" y="52" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="13" font-weight="800" fill="white" letter-spacing="2">WEEK 17</text>
+        <text x="330" y="70" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="10" fill="rgba(255,255,255,0.88)">Game stacking</text>
+
+        <!-- Tier 2: mid y=155 -->
+        <text x="330" y="148" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="16" font-weight="800" fill="white" letter-spacing="2">POSITIONAL CAPITAL</text>
+        <text x="330" y="167" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="11" fill="rgba(255,255,255,0.88)">Make your team tell a story</text>
+
+        <!-- Tier 3: mid y=251.67 -->
+        <text x="330" y="244" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="19" font-weight="800" fill="white" letter-spacing="2">PLAYER TAKES</text>
+        <text x="330" y="265" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="11.5" fill="rgba(255,255,255,0.88)">Rankings, sharp bets, breakout picks</text>
+
+        <!-- Tier 4: mid y=348.33 -->
+        <text x="330" y="340" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="20" font-weight="800" fill="white" letter-spacing="2">AVERAGE DRAFT POSITION</text>
+        <text x="330" y="362" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12" fill="rgba(255,255,255,0.88)">Real-time value + closing ADP edge</text>
+
+        <!-- Tier 5: mid y=445 -->
+        <text x="330" y="436" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="22" font-weight="800" fill="white" letter-spacing="2">STACKING</text>
+        <text x="330" y="459" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12" fill="rgba(255,255,255,0.88)">1–3 pass catchers · 1–2 RBs per team (up to 3)</text>
+
+        <!-- Tier 6 base: mid y=541.67 -->
+        <text x="330" y="532" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="23" font-weight="800" fill="white" letter-spacing="2">ROSTER CONSTRUCTION</text>
+        <text x="330" y="556" text-anchor="middle" font-family="'Barlow',sans-serif" font-size="12" fill="rgba(255,255,255,0.88)">2–3 QBs · 4–7 RBs · 6–9 WRs · 2–4 TEs</text>
+
+      </svg>
+    </div>
+  </div>
+
+  <!-- DETAIL CARDS -->
+  <div class="py-details">
+    <div class="py-detail-card">
+      <div class="py-detail-num">Layer 01 — Foundation</div>
+      <div class="py-detail-title">Roster Construction</div>
+      <ul class="py-detail-bullets">
+        <li>Parameters: <strong>2–3 QBs, 4–7 RBs, 6–9 WRs, 2–4 TEs</strong></li>
+        <li>Focus on avoiding negative-advance-rate constructions, not just chasing high-advance ones</li>
+        <li>3- and 4-RB builds declining in success as WRs move up boards</li>
+        <li><strong>6–7 RB builds</strong> gaining success — teams prioritize WRs early then fill RB with depth</li>
+        <li>Starting heavy at a position early means finishing with fewer total picks at that spot</li>
+      </ul>
+    </div>
+    <div class="py-detail-card">
+      <div class="py-detail-num">Layer 02</div>
+      <div class="py-detail-title">Stacking</div>
+      <ul class="py-detail-bullets">
+        <li>Pairing QB with pass catchers increases correlation — limits how much you need to get right</li>
+        <li>Target <strong>1–3 pass catchers</strong> and/or <strong>1–2 RBs</strong> from same team (usually up to 3 per team)</li>
+        <li>An NFL offense's scoring is correlated all season — stacking is a season-long edge</li>
+        <li>Critical given top-heavy payouts and needing to finish 1/16 in back-to-back playoff weeks</li>
+      </ul>
+    </div>
+    <div class="py-detail-card">
+      <div class="py-detail-num">Layer 03</div>
+      <div class="py-detail-title">ADP</div>
+      <ul class="py-detail-bullets">
+        <li>Draft players past their ADP (real-time value) or before their eventual closing ADP</li>
+        <li>ADP becoming more efficient — value of a player falling to you increases each year</li>
+        <li>Close-line value (injured players, free agents) also materially improves advance rates</li>
+        <li>Being right and moving a player up two rounds is <strong>more valuable</strong> than the cost of being wrong two rounds down</li>
+      </ul>
+    </div>
+    <div class="py-detail-card">
+      <div class="py-detail-num">Layer 04</div>
+      <div class="py-detail-title">Player Takes</div>
+      <ul class="py-detail-bullets">
+        <li>Hardest to predict but most meaningful — use updated, format-specific rankings</li>
+        <li>Early summer: target players with unclear roles/landing spots (e.g. <strong>Aiyuk → Daniels</strong> bet)</li>
+        <li>Take chances on undervalued injured players (e.g. <strong>Jordyn Tyson</strong> if healthy)</li>
+        <li>Lean into <strong>binary situations</strong> where ADP reflects median outcome (Warren vs. Dowdle)</li>
+        <li>Being wrong is fine — most teams lose. Being right on one player can win a championship</li>
+      </ul>
+    </div>
+    <div class="py-detail-card">
+      <div class="py-detail-num">Layer 05</div>
+      <div class="py-detail-title">Positional Capital</div>
+      <ul class="py-detail-bullets">
+        <li>Elite QBs at a discount due to mid-round rushing QBs emerging</li>
+        <li>RBs: hit elite seasons or piecemeal with mid/late-round value</li>
+        <li>WRs: continue drafting early and often</li>
+        <li>Early/mid-round TEs separating from late-rounders with floor + upside combos</li>
+        <li>Use tiers analysis to identify positional strengths and weaknesses across the draft</li>
+      </ul>
+    </div>
+    <div class="py-detail-card">
+      <div class="py-detail-num">Layer 06 — Apex</div>
+      <div class="py-detail-title">Week 17</div>
+      <ul class="py-detail-bullets">
+        <li>Game-stack correlation increases Week 17 EV by <strong>~16%</strong></li>
+        <li>Game stacking increases ability to <strong>win the finals by ~50%</strong></li>
+        <li>Stack your QB + mix in mini stacks (RB vs. opposing WR)</li>
+        <li>Only ~11% chance of getting one team to finals across 150 max entries — but finals upside is enormous</li>
+        <li>Never sacrifice the layers below it to force a Week 17 stack</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<footer>2026 Best Ball Playbook · Decision Pyramid</footer>
+</body>
+</html>
