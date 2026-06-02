@@ -4,7 +4,7 @@ A reference guide for DraftKings best ball drafting — built for use during dra
 
 ## Live Site
 
-👉 [View the Playbook](https://d3rrickhernandez.github.io/bestball-playbook/bestball-playbook.html)
+👉 [View the Playbook](https://d3rrickhernandez.github.io/bestball-playbook/draftkings.html)
 
 ## What's Inside
 
